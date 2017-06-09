@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<div>
+  <div class="login-header">
+    <div class="logo-wrap">
+      <a class="logo">
+        <img src="src/app/images/logo.png" alt="" />
+      </a>
+    </div>
+    <div class="login-text font-16">Log in to access Admin Panel</div>
+  </div>
+
+  <form class="form-horizontal form-login" [formGroup]="Form" (ngSubmit)="Form.valid && submit()">
+    <div class="panel">
+
+      <div class="panel-body">
+        <div class="form-group has-feedback">
+          <div class="col-sm">
+            <input type="tel" class="form-control" placeholder="Enter your mobile number" [(ngModel)]="loginCredentials.mobileNumber" formControlName="mobileNumber">
+            <span class="text-danger" *ngIf="submitted && formErrors.mobileNumber">{{formErrors.mobileNumber}}</span>
+          </div>
+        </div>
+        <div class="form-group has-feedback">
+          <div class="col-sm">
+            <input type="tel" [(ngModel)]="loginCredentials.pin" class="form-control" placeholder="Enter your pin" formControlName="pin">
+            <span class="text-danger" *ngIf="submitted && formErrors.pin">{{formErrors.pin}}</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" (click)="submitted=true;onValueChanged()" class="btn btn-success btn-block">Log in</button>
+        </div>
+      </div>
+
+      <div class="panel-footer"></div>
+    </div>
+  </form>
+
+</div>
