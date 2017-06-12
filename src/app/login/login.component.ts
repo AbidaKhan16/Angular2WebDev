@@ -4,7 +4,7 @@ import * as _ from "lodash";
 
 import {assets} from '../app.config';
 import {loginFactory} from './login.resource';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -40,10 +40,16 @@ export class LoginComponent implements OnInit {
       'pattern': 'Please enter only numbers.'
     }
   };
+  returnUrl: string;
 
-  constructor(private assets: assets, private formBuilder: FormBuilder, private loginFactory: loginFactory, private router: Router) { }
+  constructor(private assets: assets, private formBuilder: FormBuilder, private loginFactory: loginFactory, private router: Router, private route: ActivatedRoute, ) { }
 
   ngOnInit() {
+    // reset login status
+    // this.authenticationService.logout();
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.buildForm();
   }
 
@@ -81,7 +87,7 @@ export class LoginComponent implements OnInit {
       if (control && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {
-           this.formErrors[field] = "";
+          this.formErrors[field] = "";
           this.formErrors[field] += messages[key] + ' ';
         }
       }

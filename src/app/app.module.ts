@@ -10,6 +10,7 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { HeaderComponent } from './component/header/header.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { SideMenuComponent } from './component/side-menu/side-menu.component';
+import { AuthGuard} from './_guards/auth-guard';
 
 
 @NgModule({
@@ -28,7 +29,9 @@ import { SideMenuComponent } from './component/side-menu/side-menu.component';
     routes,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
