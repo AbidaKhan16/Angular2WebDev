@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from "lodash";
 
-import {assets} from '../app.config';
-import {loginFactory} from './login.resource';
+import { assets } from '../app.config';
+import { loginFactory } from './login.resource';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     pin: ''
   };
   userData: any;
-  submitted:false;
+  submitted: false;
   formErrors = {
     'mobileNumber': '',
     'pin': ''
@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
   };
   returnUrl: string;
 
+  abc:any;
+
+
   constructor(private assets: assets, private formBuilder: FormBuilder, private loginFactory: loginFactory, private router: Router, private route: ActivatedRoute, ) { }
 
   ngOnInit() {
@@ -49,8 +52,17 @@ export class LoginComponent implements OnInit {
     // this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
+
+    if (localStorage.getItem('auth')) {
+      // logged in so return true
+      this.router.navigate(['/dashboard']);
+      return;
+    }
+
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.buildForm();
+
+    
   }
 
   buildForm(): void {
@@ -95,6 +107,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
+
+    this.abc.a = 'a';
     console.log(this.loginCredentials);
 
     this.loginFactory.login(this.loginCredentials).subscribe(response => {
