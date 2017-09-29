@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
   };
   returnUrl: string;
 
-  abc:any;
-
 
   constructor(private assets: assets, private formBuilder: FormBuilder, private loginFactory: loginFactory, private router: Router, private route: ActivatedRoute, ) { }
 
@@ -108,7 +106,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
 
-    this.abc.a = 'a';
+   
     console.log(this.loginCredentials);
 
     this.loginFactory.login(this.loginCredentials).subscribe(response => {
