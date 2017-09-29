@@ -21,7 +21,7 @@
         </div>
         <div class="form-group has-feedback">
           <div class="col-sm">
-            <input type="tel" [(ngModel)]="loginCredentials.pin" class="form-control" placeholder="Enter your pin" formControlName="pin">
+            <input type="password" [(ngModel)]="loginCredentials.pin" class="form-control" placeholder="Enter your pin" formControlName="pin">
             <span class="text-danger" *ngIf="submitted && formErrors.pin">{{formErrors.pin}}</span>
           </div>
         </div>
