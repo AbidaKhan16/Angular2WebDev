@@ -13,14 +13,18 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
   providers: [assets, loginFactory]
 })
 export class LoginComponent implements OnInit {
+  
   Form: FormGroup;
 
   loginCredentials = {
     mobileNumber: '',
     pin: ''
   };
+
   userData: any;
+
   submitted: false;
+
   formErrors = {
     'mobileNumber': '',
     'pin': ''
@@ -40,6 +44,7 @@ export class LoginComponent implements OnInit {
       'pattern': 'Please enter only numbers.'
     }
   };
+
   returnUrl: string;
 
 
@@ -60,7 +65,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     this.buildForm();
 
-    
+
   }
 
   buildForm(): void {
@@ -85,6 +90,7 @@ export class LoginComponent implements OnInit {
 
     this.onValueChanged();
   }
+
   onValueChanged(data?: any) {
     if (!this.Form) { return; }
     const form = this.Form;
@@ -105,10 +111,6 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-
-   
-    console.log(this.loginCredentials);
-
     this.loginFactory.login(this.loginCredentials).subscribe(response => {
       this.userData = response;
       this.userData = JSON.parse(this.userData._body);
